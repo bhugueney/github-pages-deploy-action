@@ -35,9 +35,10 @@ then
   COMMIT_NAME="${GITHUB_ACTOR}"
 fi
 
+#should already be in Docker image, no ?
 # Installs Git.
-apt-get update && \
-apt-get install -y git && \
+# apt-get update && \
+# apt-get install -y git && \
 
 # Directs the action to the the Github workspace.
 cd $GITHUB_WORKSPACE && \
@@ -67,9 +68,10 @@ fi
 # Checks out the base branch to begin the deploy process.
 git checkout "${BASE_BRANCH:-master}" && \
 
-# Builds the project if a build script is provided.
-echo "Running build scripts... $BUILD_SCRIPT" && \
-eval "$BUILD_SCRIPT" && \
+# Builds the project
+emacs --batch --load elisp/publish.el
+cp ${FOLDER}/Presentation.html ${FOLDER}/index.html
+find ${FOLDER} -type f -regex '.*\.\(html\|js\|css\)$' -exec gzip -f -k {} \;
 
 if [ "$CNAME" ]; then
   echo "Generating a CNAME file in in the $FOLDER directory..."
