@@ -1,9 +1,9 @@
 {
   "name": "github-pages-deploy-action",
-  "description": "GitHub action for building a project and deploying it to GitHub pages.",
+  "description": "GitHub action for building a emacs-reveal project and deploying it to GitHub pages.",
   "license": "MIT",
-  "repository": "https://github.com/JamesIves/github-pages-deploy-action",
+  "repository": "https://github.com/bhugueney/github-pages-deploy-action/",
   "scripts": {
-    "integrationTest": "mkdir test/build && cp test/image.jpg test/build/image.jpg && cp test/index.html test/build/index.html"
+    "integrationTest": "yes"
   }
 }
