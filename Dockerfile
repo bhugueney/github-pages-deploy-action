@@ -1,13 +1,13 @@
-FROM node:10
+FROM registry.gitlab.com/oer/docker/emacs-reveal:5.2.0
 
-LABEL "com.github.actions.name"="Deploy to GitHub Pages"
-LABEL "com.github.actions.description"="This action will handle the building and deploying process of your project to GitHub Pages."
+LABEL "com.github.actions.name"="Deploy emacs-reveal to GitHub Pages"
+LABEL "com.github.actions.description"="This action will handle the building and deploying process of your emacs-reveal project to GitHub Pages."
 LABEL "com.github.actions.icon"="git-commit"
 LABEL "com.github.actions.color"="orange"
 
-LABEL "repository"="http://github.com/JamesIves/gh-pages-github-action"
-LABEL "homepage"="http://github.com/JamesIves/gh-pages-gh-action"
-LABEL "maintainer"="James Ives <iam@jamesiv.es>"
+LABEL "repository"="https://github.com/bhugueney/github-pages-deploy-action"
+LABEL "homepage"="https://github.com/bhugueney/github-pages-deploy-action"
+LABEL "maintainer"=""
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
