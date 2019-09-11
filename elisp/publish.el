@@ -30,10 +30,11 @@
 
 (princ (emacs-version))
 (princ "before require org" 'external-debugging-output)
-(require 'org)
+;;(require 'org)
 (princ "after require org" 'external-debugging-output)
 (princ (org-version))
 (princ "before require" 'external-debugging-output)       
+(with-eval-after-load 'org
 (require 'oer-reveal)
 (princ "after require" 'external-debugging-output)
 ;; Setup dot.
@@ -71,4 +72,4 @@ audio: {
 ;; Publish Org files.
 (oer-reveal-publish-all)
 
-;;; publish.el ends here
+  )
