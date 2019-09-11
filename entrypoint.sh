@@ -35,6 +35,9 @@ then
   COMMIT_NAME="${GITHUB_ACTOR}"
 fi
 
+# !!!!!!!!!!!!!!! TESTING
+exit 0
+
 #should already be in Docker image, no ?
 # Installs Git.
 # apt-get update && \
