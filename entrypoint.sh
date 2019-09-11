@@ -68,7 +68,7 @@ fi
 
 ls .
 ls elisp
-ls ${FOLDER}
+ls -ar ${FOLDER}
 
 # Builds the project
 emacs --batch --load elisp/publish.el
