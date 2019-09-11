@@ -66,15 +66,18 @@ then
   git push $REPOSITORY_PATH $BRANCH
 fi
 
-# Checks out the base branch to begin the deploy process.
-git checkout "${BASE_BRANCH:-master}" && \
-# !!!!!!!!!!!!!!! TESTING
-exit 0
+ls .
+ls elisp
+ls ${FOLDER}
 
 # Builds the project
 emacs --batch --load elisp/publish.el
 cp ${FOLDER}/Presentation.html ${FOLDER}/index.html
 find ${FOLDER} -type f -regex '.*\.\(html\|js\|css\)$' -exec gzip -f -k {} \;
+
+# !!!!!!!!!!!!!!! TESTING
+exit 0
+
 
 if [ "$CNAME" ]; then
   echo "Generating a CNAME file in in the $FOLDER directory..."
