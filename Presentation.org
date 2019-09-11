@@ -1,0 +1,326 @@
+#+STARTUP: showeverything
+#+INCLUDE: "config.org"
+
+#+OPTIONS: reveal_klipsify_src:t ^:{}
+#+REVEAL_MIN_SCALE: 1.0
+#+REVEAL_MAX_SCALE: 1.0
+
+# Some optional settings for CodeMirror.
+#+REVEAL_CODEMIRROR_CONFIG: codemirror_options_in: {
+#+REVEAL_CODEMIRROR_CONFIG:   lineNumbers: true,
+#+REVEAL_CODEMIRROR_CONFIG:   autoCloseBrackets: true
+#+REVEAL_CODEMIRROR_CONFIG: }
+
+
+#+TITLE: Interactive Social Collaborative Learning
+#+AUTHOR: Bernard Hugueney
+
+
+* Meta
+
+URL: https://huit.re/1DKEDjCL
+#+REVEAL_HTML: <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGMAAABjAQAAAACnQIM4AAAA50lEQVQ4jc3Uuw3DIBAG4LOuoMwC%0ASKxBx0qwQGwWcFZyxxqWvAB0LlAu51iR0zhHkUi5iq/77yGA3gv+WBnAw3yZoJNUqIa1hsQPSZO+%0AurlLEBrUrzq0KTSKqldYjmSn4v5C0uHo9lRc2dXumOCpspq9xQwminJYyIywNAg49W3a+/skWrdh%0AeIck6W61V0uc9kl8lDM8MFaUlKF6uwxuDpK4BkejRZKUOQuYAcxN0nMPGMkUSbzbnnebZD3vmtdl%0ASNR21/jKIqhPHEdfGsR33a8YRXEW0t4eyc603TXhoJYi6fd/zzf0AI1Prc5jGr5ZAAAAAElFTkSu%0AQmCC"  height=400 width=400 >
+
+[[https://gitlab.com/bhugueney/interactive-collaborative-social-learning/blob/master/Presentation.org][Link to source of this presentation]] that [[https://gitlab.com/bhugueney/interactive-collaborative-social-learning/edit/master/Presentation.org][you can edit]] (you might need to [[https://docs.gitlab.com/ee/user/project/members/#request-access-to-a-project][request access]])
+
+[[https://gitlab.com/bhugueney/interactive-collaborative-social-learning/issues][Link to post requests]]
+
+[[https://bhugueney.gitlab.io/interactive-collaborative-social-learning/?print-pdf][Link to printable version]]
+
+[[https://bhugueney.gitlab.io/interactive-collaborative-social-learning/Presentation_FR.html][Lien vers une version FR_fr]]
+
+#+BEGIN_NOTES
+Add speaker notes everywhere ! ☺
+#+END_NOTES
+
+
+* The Vision
+
+The computer revolution has not happened yet with teaching material.
+Cf. from word processors to wikis.
+
+** Interactive : Live code snippets in teaching materials
+Rewarding feedback : 
+- instant gratification
+- reality check of tentative understanding
+
+** Social : Public hosting of learners' productions
+
+Social feedback and reward by peers.
+
+
+** Collaborative : shared feedback on teaching materials
+
+Teaching material's source hosted in versioning (git) repository and
+ticket (issues) system.
+
+- comments
+- questions
+- improvements
+
+Decentralized enables personalisation of teaching (learning !)
+material (e.g. quizz, flashcards)
+
+* Implementations
+
+** Interactivity 1/2
+
+Quizz [[https://gitlab.com/schaepermeier/reveal.js-quiz][reveal.js wrapper]] for [[https://github.com/jewlofthelotus/SlickQuiz][SlickQuiz]].
+
+Should be used by learners to practice [[https://ncase.me/remember/][Spaced Repetition]].
+
+** Quizz
+#+OER_REVEAL_QUIZ_DEPENDENCY: { src: '%splugin/quiz/js/quiz.js', async: true, callback: function() { prepareQuizzes({checkAnswerText: 'Check My Answer!', preventUnanswered: true, skipStartButton: true}); } }
+
+#+REVEAL_HTML: <script data-quiz src="./quizzes/sample-quiz.js"></script>
+
+The quiz can easily edited from [[https://gitlab.com/bhugueney/interactive-collaborative-social-learning/blob/master/quizzes/sample-quiz.js][the text file in JSON]].
+** Interactivity 2/2
+
+Live code fragments for immediate feedback.
+
+1. Client side ([[https://github.com/viebel/klipse][Klipse]]) :
+   - HTML
+   - Javascript
+   - Basic Python
+   - Basic SQL 
+   - Clojurescript
+2. Server side ([[https://github.com/twosigma/beakerx][BeakerX]]) :
+   - Java
+   - C++
+   - Python
+   - SQL
+   - \dots
+
+** Interactive HTML
+
+#+BEGIN_SRC html
+<h1 class="whatever">This is a "Level 1" header</h1>
+<p>You can reach Michael at:</p>
+
+<ul>
+  <li><a href="https://example.com">Website</a></li>
+  <li><a href="mailto:m.bluth@example.com">Email</a></li>
+  <li><a href="tel:+123456789">Phone</a></li>
+</ul>
+#+END_SRC
+
+** Interactive javascript
+#+BEGIN_SRC js
+function f(x){
+  var res=x+x;
+  console.log("x+x=" +res);
+}
+f(2);
+f("2");
+[1,2,3].map(function(x){ return x + 1;})
+#+END_SRC
+
+** Interactive Python
+#+REVEAL_HTML: <script>Sk.configure({  __future__: Sk.python3});</script>
+
+#+BEGIN_SRC python
+import sys
+def f(x):
+  res=x+x;
+  sys.stdout.write("x+x=");# no new line
+  print(res);
+  
+f(2);
+f("2");
+print(map(lambda x :x+1,[1,2,3]))
+#+END_SRC
+#+BEGIN_NOTES
+Python 2 mostly unfortunately
+#+END_NOTES
+
+** Interactive Python with graphics
+#+BEGIN_SRC python
+import turtle
+t= turtle.Turtle()
+t.speed(0)
+n= 10
+for i in range(10):
+  t.circle(80)
+  t.left(360/n)
+#+END_SRC
+#+BEGIN_NOTES
+Fix the "bug" !
+#+END_NOTES
+
+** Interactive SQL 1/4
+   #+begin_src sql
+   CREATE TABLE Software (Name varchar(256), License varchar(64), Rating integer);
+   INSERT INTO Software VALUES
+      ("GNU Emacs", "GPLv3", 5),
+      ("GNU/Linux", "FLOSS", 4),
+      ("Powerpoint", "Proprietary", 1);
+   #+end_src
+
+** Interactive SQL 2/4
+   #+begin_src sql
+   SELECT * FROM Software;
+   #+end_src
+** Interactive SQL 3/4
+   #+begin_src sql
+   CREATE TABLE License (Name varchar(64), Freedom boolean);
+   INSERT INTO License VALUES
+      ("GPLv3", 'true'),
+      ("FLOSS", 'true'),
+      ("Proprietary", 'false');
+   #+end_src
+
+** Interactive SQL 4/4
+   #+begin_src sql
+SELECT 
+  Software.Name,Software.Rating
+FROM
+  Software INNER JOIN License ON
+  Software.license = License.Name
+WHERE License.Freedom = 'true'
+ORDER BY Software.Rating DESC;
+   #+end_src
+
+** Hosting productions
+
+- [[https://docs.gitlab.com/ee/ci/][Gitlab CI/CD]] and [[https://docs.gitlab.com/ee/user/project/pages/][Gitlab Pages]]
+- [[https://github.com/actions][Github Actions]] and [[https://pages.github.com/][Github Pages]]
+- [[https://github.com/bhugueney/asciidoctor-revealjs-klipse/blob/master/.travis.yml][Travis]]
+- [[https://mybinder.org/][mybinder.org]] for Notebooks
+
+** Sharing feedback
+- [[https://docs.gitlab.com/ee/user/project/issues/][Gitlab issues]] and [[https://docs.gitlab.com/ee/gitlab-basics/add-merge-request.html][merge request]]
+- [[https://help.github.com/en/articles/creating-an-issue][Github issues]] and [[https://help.github.com/en/articles/about-pull-requests][pull request]] 
+
+
+** Collaboration
+Lower barrier to entry with text source format, building automated
+with CI.
+- org mode :
+  - to reveal.js with [[https://gitlab.com/oer/emacs-reveal-howto][emacs-reveal]]
+  - to Notebooks with [[https://github.com/jkitchin/ox-ipynb][ox-ipynb]]
+- asciidoc to reveal.js with [[https://github.com/bhugueney/asciidoctor-revealjs-klipse][asciidoctor-revealjs-klipse]]
+- markdown to Notebooks with [[https://github.com/mwouts/jupytext][jupytext]]
+
+Cf.  [[Meta][first slide]].
+The licences must enable collaboration (cf. [[https://oer.gitlab.io/][Open Educational Resources]]).
+* Misc
+Illustrations from source code
+** Ditaa
+[[http://ditaa.sourceforge.net/][DIagrams Through Ascii Art]] :
+#+BEGIN_SRC ditaa :file img/ditaa-example.png :exports both
+    +--------+   +-------+    /-------\
+    |        | --+ ditaa +--> |       |
+    |  Text  |   +-------+    |diagram|
+    |Document|   |!magic!|    | cRED  |
+    |     {d}|   | {io}  |    |       |
+    +---+----+   +-------+    \-------/
+        :                         ^
+        |       Lots of work      |
+        +-------------------------+
+#+END_SRC
+** Graphviz
+The [[https://www.graphviz.org/][reference for graph diagrams]] :
+#+BEGIN_SRC dot :file img/dot-example.svg :exports both
+digraph structs {
+	node[shape=record]
+	struct1 [label="<f0> left|<f1> mid\ dle|<f2> right"];
+	struct2 [label="{<f0> one|<f1> two\n\n\n}" shape=Mrecord];
+	struct3 [label="hello\nworld |{ b |{c|<here> d|e}| f}| g | h"];
+	struct1:f1 -> struct2:f0;
+	struct1:f0 -> struct3:f1;
+}
+#+END_SRC
+#+BEGIN_NOTES
+Export to PNG or SVG.
+#+END_NOTES
+
+** Plantuml
+[[http://plantuml.com/][PlantUML]] for most UML diagrams
+** Sequence diagrams
+#+BEGIN_SRC plantuml :file img/plantuml-seq-diag-example.png :exports both
+Alice->Bob : hello
+note left: this is a first note
+Bob->Alice : ok
+note right: this is another note
+Bob->Bob : I am thinking
+note left
+	a note
+	can also be defined
+	on several lines
+end note
+#+END_SRC
+
+** Use case diagrams
+#+BEGIN_SRC plantuml :file img/plantuml-use-case-diag-example.png :exports both
+:Main Admin: as Admin
+(Use the application) as (Use)
+User -> (Start)
+User --> (Use)
+Admin ---> (Use)
+note right of Admin : This is an example.
+note right of (Use)
+  A note can also
+  be on several lines
+end note
+note "This note is connected\nto several objects." as N2
+(Start) .. N2
+N2 .. (Use)
+#+END_SRC
+
+** Class diagrams
+#+BEGIN_SRC plantuml :file img/plantuml-class-diag-example.png :exports both
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+  Object[] elementData
+  size()
+}
+
+enum TimeUnit {
+  DAYS
+  HOURS
+  MINUTES
+}
+
+annotation SuppressWarnings
+
+#+END_SRC
+** Activity diagrams
+#+BEGIN_SRC plantuml :file img/plantuml-activity-diag-example.png :exports both
+start
+
+if (Graphviz installed?) then (yes)
+  :process all\ndiagrams;
+else (no)
+  :process only
+  __sequence__ and __activity__ diagrams;
+endif
+
+stop
+#+END_SRC
+** State diagrams
+#+BEGIN_SRC plantuml :file img/plantuml-state-diag-example.png :exports both
+[*] -up-> First
+First -right-> Second
+Second --> Third
+Third -left-> Last
+
+#+END_SRC
+
+# The following prevents replacement of 8 spaces with tabs,
+# which would destroy indentation for Python.
+
+# Local Variables:
+# org-src-preserve-indentation: t
+# End:

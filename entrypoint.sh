@@ -68,7 +68,7 @@ fi
 
 ls .
 ls elisp
-ls -ar ${FOLDER}
+ls -aR /github/workspace/
 
 # Builds the project
 emacs --batch --load elisp/publish.el

@@ -14,6 +14,6 @@ jobs:
       uses: bhugueney/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: '/github/workspace/'
-    - run: echo "testing"
+        BRANCH: master
+        FOLDER: 'docs'
+    - run: ls -aR
