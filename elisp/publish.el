@@ -27,10 +27,13 @@
 (setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
 (setq org-plantuml-jar-path
       (expand-file-name "/root/plantuml-1.2019.8/plantuml.jar"))
-(princ "before require" 'external-debugging-output)
+
 (princ (emacs-version))
+(princ "before require org" 'external-debugging-output)
+(require 'org)
+(princ "after require org" 'external-debugging-output)
 (princ (org-version))
-       
+(princ "before require" 'external-debugging-output)       
 (require 'oer-reveal)
 (princ "after require" 'external-debugging-output)
 ;; Setup dot.
