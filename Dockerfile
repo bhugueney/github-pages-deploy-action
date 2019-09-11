@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/oer/docker/emacs-reveal:5.3.0
+FROM registry.gitlab.com/bhugueney/docker/emacs-reveal:5.3.0-testing
 
 LABEL "com.github.actions.name"="Deploy emacs-reveal to GitHub Pages"
 LABEL "com.github.actions.description"="This action will handle the building and deploying process of your emacs-reveal project to GitHub Pages."
