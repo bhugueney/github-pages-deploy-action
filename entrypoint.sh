@@ -69,7 +69,9 @@ fi
 ls .
 ls elisp
 ls -aR /github/workspace/
-
+echo "listing everything !!! :"
+ls -aR /
+echo "<- done listing everythin!!!!"
 # Builds the project
 emacs --batch --load elisp/publish.el
 cp ${FOLDER}/Presentation.html ${FOLDER}/index.html
