@@ -17,17 +17,19 @@
 ;; emacs --batch --load elisp/publish.el
 
 ;;; Code:
+(princ "before (package-initialize)" 'external-debugging-output)
 (package-initialize)
+(princ "after (package-initialize)" 'external-debugging-output)
 (let ((default-directory  "/root/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
-
+(princ "after adding to load-path" 'external-debugging-output)
 
 (setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
 (setq org-plantuml-jar-path
       (expand-file-name "/root/plantuml-1.2019.8/plantuml.jar"))
-
+(princ "before require" 'external-debugging-output)
 (require 'oer-reveal)
-
+(princ "after require" 'external-debugging-output)
 ;; Setup dot.
 ;; The following supposes that png images are generated into directory img,
 ;; which needs to exist.
