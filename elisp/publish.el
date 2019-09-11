@@ -17,12 +17,13 @@
 ;; emacs --batch --load elisp/publish.el
 
 ;;; Code:
-(princ "before (package-initialize)" 'external-debugging-output)
-(package-initialize)
-(princ "after (package-initialize)" 'external-debugging-output)
 (let ((default-directory  "/root/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 (princ "after adding to load-path" 'external-debugging-output)
+
+(princ "before (package-initialize)" 'external-debugging-output)
+(package-initialize)
+(princ "after (package-initialize)" 'external-debugging-output)
 
 (setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
 (setq org-plantuml-jar-path
