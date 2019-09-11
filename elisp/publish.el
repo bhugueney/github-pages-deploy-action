@@ -28,6 +28,9 @@
 (setq org-plantuml-jar-path
       (expand-file-name "/root/plantuml-1.2019.8/plantuml.jar"))
 (princ "before require" 'external-debugging-output)
+(princ (emacs-version))
+(princ (org-version))
+       
 (require 'oer-reveal)
 (princ "after require" 'external-debugging-output)
 ;; Setup dot.
