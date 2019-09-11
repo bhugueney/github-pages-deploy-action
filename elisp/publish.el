@@ -17,10 +17,11 @@
 ;; emacs --batch --load elisp/publish.el
 
 ;;; Code:
+(package-initialize)
 (let ((default-directory  "/root/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(package-initialize)
+
 (setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
 (setq org-plantuml-jar-path
       (expand-file-name "/root/plantuml-1.2019.8/plantuml.jar"))
