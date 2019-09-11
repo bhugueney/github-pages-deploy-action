@@ -35,8 +35,6 @@ then
   COMMIT_NAME="${GITHUB_ACTOR}"
 fi
 
-# !!!!!!!!!!!!!!! TESTING
-exit 0
 
 #should already be in Docker image, no ?
 # Installs Git.
@@ -70,6 +68,8 @@ fi
 
 # Checks out the base branch to begin the deploy process.
 git checkout "${BASE_BRANCH:-master}" && \
+# !!!!!!!!!!!!!!! TESTING
+exit 0
 
 # Builds the project
 emacs --batch --load elisp/publish.el
