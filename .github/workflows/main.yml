@@ -16,4 +16,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: master
         FOLDER: 'docs'
-    - run: ls -aR
+    - run: ls -aR && emacs --version
